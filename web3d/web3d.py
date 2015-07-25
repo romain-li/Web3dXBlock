@@ -40,6 +40,8 @@ class Web3dXBlock(XBlock):
         frag.initialize_js('Web3dXBlock')
         return frag
 
+    studio_view = student_view
+
     @staticmethod
     def workbench_scenarios():
         """A canned scenario for display in the workbench."""
