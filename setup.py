@@ -23,7 +23,7 @@ def package_data(pkg, roots):
 setup(
     name='web3d-xblock',
     version='0.1',
-    description='web3d XBlock',   # TODO: write a better description.
+    description='Web 3D XBlock with three.js',
     packages=[
         'web3d',
     ],

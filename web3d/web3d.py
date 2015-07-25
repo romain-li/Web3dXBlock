@@ -9,19 +9,13 @@ from xblock.fragment import Fragment
 
 class Web3dXBlock(XBlock):
     """
-    TO-DO: document what your XBlock does.
+    A web 3D Xblock.
     """
 
-    # Fields are defined on the class.  You can access them in your code as
-    # self.<fieldname>.
-
-    # TO-DO: delete count, and define your own fields.
     display_name = String(display_name="Display name", default="web3d", scope=Scope.settings,
-                          help="Name of component in edxplatform")
-    obj = String(default=None,
-                 scope=Scope.content, help="Address of the model's obj file.")
-    mtl = String(default=None,
-                 scope=Scope.content, help="Address of the model's mtl file.")
+                          help="This name appears in the horizontal navigation at the top of the page.")
+    obj = String(default=None, scope=Scope.content, help="Address of the model's obj file.")
+    mtl = String(default=None, scope=Scope.content, help="Address of the model's mtl file.")
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -37,7 +31,6 @@ class Web3dXBlock(XBlock):
         frag = Fragment(
             html.format(obj=self.obj or self.runtime.local_resource_url(self, "public/skylab/skylab_carbajal.obj"),
                         mtl=self.mtl or self.runtime.local_resource_url(self, "public/skylab/skylab_carbajal.mtl")))
-        frag.add_css(self.resource_string("static/css/web3d.css"))
         frag.add_javascript(self.resource_string("static/js/src/web3d.js"))
         frag.add_javascript(self.resource_string("static/js/lib/three.min.js"))
         frag.add_javascript(self.resource_string("static/js/lib/loaders/DDSLoader.js"))
