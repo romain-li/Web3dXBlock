@@ -58,7 +58,6 @@ function Web3dXBlock(runtime, element) {
         var loader = new THREE.OBJMTLLoader();
         loader.load(container.data('obj'), container.data('mtl'), function (object) {
 
-            object.position.y = -40;
             scene.add(object);
 
         }, onProgress, onError);
