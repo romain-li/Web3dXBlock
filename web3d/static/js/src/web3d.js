@@ -6,7 +6,7 @@ function Web3dXBlock(runtime, element) {
     var camera, scene, renderer;
     var controls;
 
-    var width = 900;
+    var width = 750;
     var height = 500;
 
     function animate() {

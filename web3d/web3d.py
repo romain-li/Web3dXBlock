@@ -14,8 +14,8 @@ class Web3dXBlock(XBlock):
 
     display_name = String(display_name="Display name", default="web3d", scope=Scope.settings,
                           help="This name appears in the horizontal navigation at the top of the page.")
-    obj = String(default=None, scope=Scope.content, help="Address of the model's obj file.")
-    mtl = String(default=None, scope=Scope.content, help="Address of the model's mtl file.")
+    obj = String(default=None, scope=Scope.content, help="URL for obj file.")
+    mtl = String(default=None, scope=Scope.content, help="URL for mtl file.")
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -40,7 +40,20 @@ class Web3dXBlock(XBlock):
         frag.initialize_js('Web3dXBlock')
         return frag
 
-    studio_view = student_view
+    def studio_view(self, context=None):
+        html = self.resource_string("static/html/web3d_studio.html")
+        frag = Fragment(
+            html.format(obj=self.obj,
+                        mtl=self.mtl))
+        frag.add_javascript(self.resource_string("static/js/src/web3d_studio.js"))
+        frag.initialize_js("Web3dXBlockStudio")
+        return frag
+
+    @XBlock.json_handler
+    def studio_submit(self, data, suffix=''):
+        self.obj = data.get('obj')
+        self.mtl = data.get('mtl')
+        return {'result': 'success'}
 
     @staticmethod
     def workbench_scenarios():
