@@ -39,8 +39,12 @@ function Web3dXBlock(runtime, element) {
         scene.add(ambient);
 
         var directionalLight = new THREE.DirectionalLight(0xffeedd);
-        directionalLight.position.set(0, 0, 1).normalize();
+        directionalLight.position.set(1, 1, 1).normalize();
         scene.add(directionalLight);
+
+        var directionalLight2 = new THREE.DirectionalLight(0xffeedd, 0.5);
+        directionalLight2.position.set(-1, 1, 1).normalize();
+        scene.add(directionalLight2);
 
         // model
 
@@ -70,7 +74,7 @@ function Web3dXBlock(runtime, element) {
 
         controls = new THREE.TrackballControls( camera, renderer.domElement );
         controls.rotateSpeed = 5;
-        controls.minDistance = 50;
+        controls.minDistance = 5;
         controls.maxDistance = 200;
         controls.addEventListener( 'change', render );
 
